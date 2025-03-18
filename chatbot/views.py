@@ -23,6 +23,10 @@ class ProductViewSet(viewsets.ModelViewSet):
     #queryset = Product.objects.filter(price__gt=1000)
     serializer_class = ProductSerializer
 
+#CRUD operations for all orders
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
 
 
 
