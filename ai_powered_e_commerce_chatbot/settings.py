@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'chatbot',
+    'rest_framework', #for implementing  the REST API
 ]
 
 MIDDLEWARE = [
