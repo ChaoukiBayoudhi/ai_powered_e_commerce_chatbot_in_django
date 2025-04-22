@@ -33,6 +33,30 @@ class ProductViewSet(viewsets.ModelViewSet):
         #Serialize result
         products=ProductSerializer(result,many=True)
         return Response(products.data,status.HTTP_200_OK)
+    @action(methods=['GET'], detail=False,
+    url_path='by_name/(?P<name>[^/.]+)'
+    )
+    def get_products_by_name(self,request, name):
+        result=Product.objects.filter(name__icontains=name)
+        if not result.exists():
+            return Response(data={'message':'No products found with the name '+name},
+                            status=status.HTTP_204_NO_CONTENT)
+        #Serialize result
+        products=ProductSerializer(result,many=True)
+        return Response(products.data,status.HTTP_200_OK)
+    @action(methods=['get'], detail=False)
+    def get_products_price_range(self,request):
+        price_min=request.request_parms.get('priceMin')
+        price_max=request.request_parms.get('priceMac')
+        result=Product.objects.filter(price__gte=price_min, price__lte=price_max)
+        #or
+        #result=Product.objects.filter(price__range(peice_min,price_max))
+        if not result.exists():
+            return Response(data={'message':'No products found with the price range '+price_min+' to '+price_max},
+                            status=status.HTTP_204_NO_CONTENT)
+        #Serialize result
+        products=ProductSerializer(result,many=True)
+        return Response(products.data,status.HTTP_200_OK)
 
 
 #CRUD operations for all orders
