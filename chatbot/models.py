@@ -132,6 +132,7 @@ class Product(models.Model):
             )
         ]
     )
+    manifacturing_date=models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

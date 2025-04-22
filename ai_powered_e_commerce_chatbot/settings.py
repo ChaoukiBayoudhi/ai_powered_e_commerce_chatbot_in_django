@@ -77,8 +77,12 @@ WSGI_APPLICATION = "ai_powered_e_commerce_chatbot.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "chatbot_db",
+        'USER':'user01',
+        'PASSWORD':'user01',
+        'HOST':'localhost',
+        'PORT':5432,
     }
 }
 
